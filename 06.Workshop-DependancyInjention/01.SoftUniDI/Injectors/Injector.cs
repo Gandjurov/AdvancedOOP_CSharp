@@ -64,10 +64,19 @@ namespace SoftUniDI.Injectors
                         {
                             instance = Activator.CreateInstance(dependancy);
                             constructorParams[i++] = instance;
+                            this.module.SetInstance(parameterInfo.ParameterType, instance);
+                        }
+                        else
+                        {
+                            constructorParams[i++] = instance;
                         }
                     }
                 }
+
+                return (TClass)Activator.CreateInstance(desireClass, constructorParams);
             }
+
+            return default(TClass);
         }
 
         private bool CheckForFieldInjection<TClass>()
