@@ -32,5 +32,17 @@ namespace SoftUniDI.Modules
         {
             throw new NotImplementedException();
         }
+
+        private void CreateMapping<TInterface, TImplementation>()
+        {
+            if (!this.implementations.ContainsKey(typeof(TInterface)))
+            {
+                this.implementations[typeof(TInterface)] = new Dictionary<string, Type>();
+            }
+
+            this.implementations[typeof(TInterface)].Add(typeof(TImplementation).Name, typeof(TImplementation));
+
+
+        }
     }
 }
