@@ -22,7 +22,8 @@ namespace SoftUniDI.Modules
 
         public object GetInstance(Type type)
         {
-            throw new NotImplementedException();
+            this.instances.TryGetValue(type, out object value);
+            return value;
         }
 
         public Type GetMapping(Type currentInterface, object attribute)
