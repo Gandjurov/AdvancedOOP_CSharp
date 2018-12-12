@@ -1,6 +1,8 @@
-﻿using SoftUniDI.Modules.Contracts;
+﻿using SoftUniDI.Attributes;
+using SoftUniDI.Modules.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SoftUniDI.Modules
@@ -25,7 +27,26 @@ namespace SoftUniDI.Modules
 
         public Type GetMapping(Type currentInterface, object attribute)
         {
-            throw new NotImplementedException();
+            var currentImplementation = this.implementations[currentInterface];
+
+            Type type = null;
+
+            if (attribute is InjectAttribute)
+            {
+                if (currentImplementation.Count == 0)
+                {
+                    throw new ArgumentException($"No available mapping for class: {currentInterface.FullName}");
+                }
+
+                type = this.implementations[currentInterface].Values.FirstOrDefault();
+            }
+            else if (attribute is NamedAttribute named)
+            {
+                string dependancyName = named.Name;
+                type = currentImplementation[dependancyName];
+            }
+
+            return type;
         }
 
         public void SetInstance(Type implementation, object instance)
@@ -41,8 +62,6 @@ namespace SoftUniDI.Modules
             }
 
             this.implementations[typeof(TInterface)].Add(typeof(TImplementation).Name, typeof(TImplementation));
-
-
         }
     }
 }
