@@ -5,8 +5,4 @@
     <RootNamespace>SoftUniDI</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Injectors\" />
-  </ItemGroup>
-
 </Project>
