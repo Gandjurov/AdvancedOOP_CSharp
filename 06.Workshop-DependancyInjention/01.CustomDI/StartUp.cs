@@ -6,7 +6,11 @@ namespace CustomDI
     {
         public static void Main()
         {
+            var injector = DependencyInjector.CreateInjector(new Module());
 
+            var engine = injector.Inject<Engine>();
+
+            engine.Run();
         }
     }
 }
