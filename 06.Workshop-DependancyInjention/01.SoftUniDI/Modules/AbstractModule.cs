@@ -58,7 +58,7 @@ namespace SoftUniDI.Modules
             }
         }
 
-        private void CreateMapping<TInterface, TImplementation>()
+        protected void CreateMapping<TInterface, TImplementation>()
         {
             if (!this.implementations.ContainsKey(typeof(TInterface)))
             {
