@@ -1,5 +1,7 @@
 ﻿namespace CustomDI.Core
 {
+    using CustomDI.Models.Contracts;
+    using SoftUniDI.Attributes;
     using System;
     using System.Collections.Generic;
     using System.Text;

@@ -2,12 +2,13 @@
 {
     using CustomDI.Models;
     using CustomDI.Models.Contracts;
+    using SoftUniDI.Modules;
     using SoftUniDI.Modules.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Text;
 
-    public class Module : IModule
+    public class Module : AbstractModule
     {
         public override void Configure()
         {

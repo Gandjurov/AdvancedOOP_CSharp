@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CustomDI.Core;
+using SoftUniDI;
+using System;
+using System.Reflection;
+using CustomDI.Modules;
 
 namespace CustomDI
 {
@@ -6,7 +10,7 @@ namespace CustomDI
     {
         public static void Main()
         {
-            var injector = DependencyInjector.CreateInjector(new Module());
+            var injector = DependencyInjector.CreateInjector(new Modules.Module());
 
             var engine = injector.Inject<Engine>();
 
