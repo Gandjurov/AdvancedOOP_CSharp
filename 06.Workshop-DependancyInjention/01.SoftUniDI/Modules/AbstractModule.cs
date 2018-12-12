@@ -51,7 +51,10 @@ namespace SoftUniDI.Modules
 
         public void SetInstance(Type implementation, object instance)
         {
-            throw new NotImplementedException();
+            if (!this.instances.ContainsKey(implementation))
+            {
+                this.instances.Add(implementation, instance);
+            }
         }
 
         private void CreateMapping<TInterface, TImplementation>()

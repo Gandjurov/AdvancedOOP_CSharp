@@ -6,4 +6,8 @@
     <RootNamespace>CustomDI</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\01.SoftUniDI\01.SoftUniDI.csproj" />
+  </ItemGroup>
+
 </Project>
