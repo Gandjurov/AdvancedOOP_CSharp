@@ -79,6 +79,58 @@ namespace SoftUniDI.Injectors
             return default(TClass);
         }
 
+        private TClass CreateFieldInjection<TClass>()
+        {
+            var desireClass = typeof(TClass);
+            var desireClassInstance = this.module.GetInstance(desireClass);
+
+            if (desireClassInstance == null)
+            {
+                desireClassInstance = Activator.CreateInstance(desireClass);
+                this.module.SetInstance(desireClass, desireClassInstance);
+            }
+
+            var fields = desireClass.GetFields((BindingFlags)62);
+
+            foreach (var fieldInfo in fields)
+            {
+                if (fieldInfo.GetCustomAttributes<InjectAttribute>(true).Any())
+                {
+                    var injection = fieldInfo.GetCustomAttributes<InjectAttribute>(true)
+                                             .FirstOrDefault();
+
+                    Type dependancy = null;
+
+                    var named = fieldInfo.GetCustomAttribute<NamedAttribute>(true);
+                    var type = fieldInfo.FieldType;
+
+                    if (named == null)
+                    {
+                        dependancy = this.module.GetMapping(type, injection);
+                    }
+                    else
+                    {
+                        dependancy = this.module.GetMapping(type, named);
+                    }
+
+                    if (type.IsAssignableFrom(dependancy))
+                    {
+                        var instance = this.module.GetInstance(dependancy);
+
+                        if (instance == null)
+                        {
+                            instance = Activator.CreateInstance(dependancy);
+                            this.module.SetInstance(dependancy, instance);
+                        }
+
+                        fieldInfo.SetValue(desireClassInstance, instance);
+                    }
+                }
+            }
+
+            return (TClass)desireClassInstance;
+        }
+
         private bool CheckForFieldInjection<TClass>()
         {
             return typeof(TClass).GetFields((BindingFlags)62)
