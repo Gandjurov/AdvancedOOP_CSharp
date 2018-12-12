@@ -17,6 +17,29 @@ namespace SoftUniDI.Injectors
             this.module = module;
         }
 
+        public TClass Inject<TClass>()
+        {
+            var hasConstructorAttribute = this.CheckForConstructorInjection<TClass>();
+            var hasFieldAttribute = this.CheckForFieldInjection<TClass>();
+
+            if (hasConstructorAttribute && hasFieldAttribute)
+            {
+                throw new ArgumentException("There must be only field or constructor annotated with Inject attribute");
+            }
+
+            if (hasConstructorAttribute)
+            {
+                return this.CreateConstructorInjection<TClass>();
+            }
+
+            if (hasFieldAttribute)
+            {
+                return this.CreateFieldInjection<TClass>();
+            }
+
+            return default(TClass);
+        }
+
         private TClass CreateConstructorInjection<TClass>()
         {
             var desireClass = typeof(TClass);
