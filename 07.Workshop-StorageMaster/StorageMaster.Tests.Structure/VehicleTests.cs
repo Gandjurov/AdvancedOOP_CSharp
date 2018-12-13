@@ -3,6 +3,7 @@ using StorageMaster.Entities.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace StorageMaster.Tests.Structure
 {
@@ -92,6 +93,21 @@ namespace StorageMaster.Tests.Structure
                     Assert.AreEqual(expectedParam, actualParam);
                 }
             }
+
+        }
+
+        [Test]
+        public void ValidateVehicleFields()
+        {
+            var vehicleType = GetType("Vehicle");
+            var trunkField = vehicleType.GetField("trunk", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            Assert.That(trunkField, Is.Not.Null, $"Invalid field");
+        }
+
+        [Test]
+        public void ValidateVehicleIsAbstract()
+        {
 
         }
 
