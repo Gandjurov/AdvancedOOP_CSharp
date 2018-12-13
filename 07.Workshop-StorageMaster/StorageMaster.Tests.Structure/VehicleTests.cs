@@ -7,8 +7,17 @@ using System.Reflection;
 
 namespace StorageMaster.Tests.Structure
 {
+    [TestFixture]
     public class VehicleTests
     {
+        private Type vehicle;
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.vehicle = this.GetType("Vehicle");
+        }
+
         //Validate entities
         [Test]
         public void ValidateAllVehicles()
@@ -33,9 +42,7 @@ namespace StorageMaster.Tests.Structure
         public void ValidateVehicleProperties()
         {
             //typeof(Vehicle)
-            var vehicleType = GetType("Vehicle");
-
-            var actualProperties = vehicleType.GetProperties();
+            var actualProperties = vehicle.GetProperties();
 
             var expectedProperties = new Dictionary<string, Type>
             {
@@ -45,11 +52,8 @@ namespace StorageMaster.Tests.Structure
                 { "IsEmpty", typeof(bool) }
             };
 
-            //new[] { "Capacity", "Trunk", "IsFull", "IsEmpty" };
-
             //return type
-
-
+            
             foreach (var actualProperty in actualProperties)
             {
                 var isValidProperty = expectedProperties.Any(x => x.Key == actualProperty.Name &&
@@ -65,8 +69,6 @@ namespace StorageMaster.Tests.Structure
         [Test]
         public void ValidateVehicleMethods()
         {
-            var vehicleType = GetType("Vehicle");
-
             var expectedMethods = new List<Method>
             {
                 new Method(typeof(void), "LoadProduct", typeof(Product)),
@@ -75,7 +77,7 @@ namespace StorageMaster.Tests.Structure
 
             foreach (var expectedMethod in expectedMethods)
             {
-                var currentMethod = vehicleType.GetMethod(expectedMethod.Name);
+                var currentMethod = vehicle.GetMethod(expectedMethod.Name);
 
                 Assert.That(currentMethod, Is.Not.Null, $"{expectedMethod.Name} method doesn't exists");
 
@@ -99,8 +101,7 @@ namespace StorageMaster.Tests.Structure
         [Test]
         public void ValidateVehicleFields()
         {
-            var vehicleType = GetType("Vehicle");
-            var trunkField = vehicleType.GetField("trunk", BindingFlags.NonPublic | BindingFlags.Instance);
+            var trunkField = vehicle.GetField("trunk", BindingFlags.NonPublic | BindingFlags.Instance);
 
             Assert.That(trunkField, Is.Not.Null, $"Invalid field");
         }
@@ -108,11 +109,24 @@ namespace StorageMaster.Tests.Structure
         [Test]
         public void ValidateVehicleIsAbstract()
         {
-            var vehicleType = GetType("Vehicle");
-
-            Assert.That(vehicleType.IsAbstract, $"Vehicle class must be abstract!");
+            Assert.That(vehicle.IsAbstract, $"Vehicle class must be abstract!");
         }
 
+        [Test]
+        public void ValidateVehicleChildClasses()
+        {
+            var derivedTypes = new[]
+            {
+                GetType("Semi"),
+                GetType("Truck"),
+                GetType("Van")
+            };
+
+            foreach (var derivedType in derivedTypes)
+            {
+                Assert.That(derivedType.BaseType, Is.EqualTo(vehicle), $"{derivedType} doesn't inherit {vehicle}!");
+            }
+        }
 
         private Type GetType(string type)
         {
