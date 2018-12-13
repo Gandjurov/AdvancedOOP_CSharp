@@ -12,13 +12,20 @@
     [TestFixture]
     public class StorageMasterTests
     {
+        private Type storageMaster;
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.storageMaster = this.GetType("StorageMaster");
+        }
+
         [Test]
         public void ValidateAddProductMethod()
         {
-            var storageMasterType = this.GetType("StorageMaster");
-            var addProductMethod = storageMasterType.GetMethod("AddProduct");
+            var addProductMethod = storageMaster.GetMethod("AddProduct");
 
-            var instance = Activator.CreateInstance(storageMasterType);
+            var instance = Activator.CreateInstance(storageMaster);
 
             string productType = "SolidStateDrive";
             double price = 230.43;
@@ -28,7 +35,7 @@
 
             Assert.AreEqual(expectedResult, actualResult);
 
-            var productPoolField = (IDictionary<string, Stack<Product>>)storageMasterType
+            var productPoolField = (IDictionary<string, Stack<Product>>)storageMaster
                                             .GetField("productsPool", (BindingFlags)62)
                                             .GetValue(instance);
             
@@ -38,9 +45,8 @@
         [Test]
         public void ValidateRegisterStorageMethod()
         {
-            var storageMasterType = this.GetType("StorageMaster");
-            var registerStorageMethod = storageMasterType.GetMethod("RegisterStorage");
-            var instance = Activator.CreateInstance(storageMasterType);
+            var registerStorageMethod = storageMaster.GetMethod("RegisterStorage");
+            var instance = Activator.CreateInstance(storageMaster);
 
             string storageType = "DistributionCenter";
             string name = "Gosho";
@@ -50,7 +56,7 @@
 
             Assert.AreEqual(expectedResult, actualResult);
 
-            var storageRegistryField = (IDictionary<string, Storage>)storageMasterType
+            var storageRegistryField = (IDictionary<string, Storage>)storageMaster
                                 .GetField("storageRegistry", (BindingFlags)62)
                                 .GetValue(instance);
 
@@ -61,9 +67,8 @@
         [Test]
         public void ValidateSendVehicleToMethod()
         {
-            var storageMasterType = this.GetType("StorageMaster");
-            var registerStorageMethod = storageMasterType.GetMethod("RegisterStorage");
-            var instance = Activator.CreateInstance(storageMasterType);
+            var registerStorageMethod = storageMaster.GetMethod("RegisterStorage");
+            var instance = Activator.CreateInstance(storageMaster);
 
             string firstStorageType = "DistributionCenter";
             string firstName = "Gosho";
@@ -74,7 +79,7 @@
             registerStorageMethod.Invoke(instance, new object[] { firstStorageType, firstName });
             registerStorageMethod.Invoke(instance, new object[] { secondStorageType, secondName });
 
-            var actualResult = storageMasterType
+            var actualResult = storageMaster
                                 .GetMethod("SendVehicleTo")
                                 .Invoke(instance, new object[] { "Gosho", 0, "Pesho" });
 
@@ -82,6 +87,7 @@
 
             Assert.AreEqual(expectedResult, actualResult);
         }
+
 
         private Type GetType(string type)
         {
