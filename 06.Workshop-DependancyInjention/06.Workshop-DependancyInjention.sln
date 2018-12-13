@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.CustomDI", "01.CustomDI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.SoftUniDI", "01.SoftUniDI\01.SoftUniDI.csproj", "{94F5FFD6-A400-4986-B998-8714E13CD86D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurviceProvider", "SurviceProvider\SurviceProvider.csproj", "{A0CF5671-294D-492C-92D1-B62653E09078}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{94F5FFD6-A400-4986-B998-8714E13CD86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94F5FFD6-A400-4986-B998-8714E13CD86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94F5FFD6-A400-4986-B998-8714E13CD86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0CF5671-294D-492C-92D1-B62653E09078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CF5671-294D-492C-92D1-B62653E09078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CF5671-294D-492C-92D1-B62653E09078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CF5671-294D-492C-92D1-B62653E09078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
