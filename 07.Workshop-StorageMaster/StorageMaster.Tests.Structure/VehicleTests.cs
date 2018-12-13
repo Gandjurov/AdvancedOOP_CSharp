@@ -128,6 +128,19 @@ namespace StorageMaster.Tests.Structure
             }
         }
 
+        [Test]
+        public void ValidateVehicleConstructor()
+        {
+            var flags = BindingFlags.NonPublic | BindingFlags.Instance;
+
+            var constructor = this.vehicle.GetConstructors(flags).FirstOrDefault();
+            Assert.That(constructor, Is.Not.Null, "Constructor doesn't exists");
+
+            var ctorParams = constructor.GetParameters();
+            Assert.That(ctorParams[0].ParameterType, Is.EqualTo(typeof(int)));
+        }
+
+
         private Type GetType(string type)
         {
             var targetType = typeof(StartUp)
