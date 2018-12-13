@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageMaster", "StorageMas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageMaster.Tests.Structure", "StorageMaster.Tests.Structure\StorageMaster.Tests.Structure.csproj", "{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageMaster.BusinessLogic.Tests", "StorageMaster.BusinessLogic.Tests\StorageMaster.BusinessLogic.Tests.csproj", "{67DCF6BD-ED6B-4EDE-81D2-1DA710B8F5BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DCF6BD-ED6B-4EDE-81D2-1DA710B8F5BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DCF6BD-ED6B-4EDE-81D2-1DA710B8F5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DCF6BD-ED6B-4EDE-81D2-1DA710B8F5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DCF6BD-ED6B-4EDE-81D2-1DA710B8F5BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
