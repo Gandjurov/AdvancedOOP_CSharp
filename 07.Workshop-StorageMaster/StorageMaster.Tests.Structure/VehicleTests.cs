@@ -108,7 +108,9 @@ namespace StorageMaster.Tests.Structure
         [Test]
         public void ValidateVehicleIsAbstract()
         {
+            var vehicleType = GetType("Vehicle");
 
+            Assert.That(vehicleType.IsAbstract, $"Vehicle class must be abstract!");
         }
 
 
