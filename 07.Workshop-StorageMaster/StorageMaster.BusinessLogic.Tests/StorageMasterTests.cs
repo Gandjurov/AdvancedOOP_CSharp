@@ -2,6 +2,7 @@
 {
     using NUnit.Framework;
     using StorageMaster.Entities.Products;
+    using StorageMaster.Entities.Storage;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -32,6 +33,29 @@
                                             .GetValue(instance);
             
             Assert.That(productPoolField[productType].Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ValidateRegisterStorageMethod()
+        {
+            var storageMasterType = this.GetType("StorageMaster");
+            var registerStorageMethod = storageMasterType.GetMethod("RegisterStorage");
+            var instance = Activator.CreateInstance(storageMasterType);
+
+            string storageType = "DistributionCenter";
+            string name = "Gosho";
+
+            var actualResult = registerStorageMethod.Invoke(instance, new object[] { storageType, name });
+            var expectedResult = $"Registered Gosho";
+
+            Assert.AreEqual(expectedResult, actualResult);
+
+            var storageRegistryField = (IDictionary<string, Storage>)storageMasterType
+                                .GetField("storageRegistry", (BindingFlags)62)
+                                .GetValue(instance);
+
+            Assert.That(storageRegistryField[name].Name, Is.EqualTo(name));
+
         }
 
         private Type GetType(string type)
