@@ -58,6 +58,31 @@
 
         }
 
+        [Test]
+        public void ValidateSendVehicleToMethod()
+        {
+            var storageMasterType = this.GetType("StorageMaster");
+            var registerStorageMethod = storageMasterType.GetMethod("RegisterStorage");
+            var instance = Activator.CreateInstance(storageMasterType);
+
+            string firstStorageType = "DistributionCenter";
+            string firstName = "Gosho";
+
+            string secondStorageType = "AutomatedWarehouse";
+            string secondName = "Pesho";
+
+            registerStorageMethod.Invoke(instance, new object[] { firstStorageType, firstName });
+            registerStorageMethod.Invoke(instance, new object[] { secondStorageType, secondName });
+
+            var actualResult = storageMasterType
+                                .GetMethod("SendVehicleTo")
+                                .Invoke(instance, new object[] { "Gosho", 0, "Pesho" });
+
+            var expectedResult = $"Sent Van to Pesho (slot 1)";
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
         private Type GetType(string type)
         {
             var targetType = typeof(StartUp)
