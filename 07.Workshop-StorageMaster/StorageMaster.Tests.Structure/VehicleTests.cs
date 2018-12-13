@@ -72,38 +72,27 @@ namespace StorageMaster.Tests.Structure
                 new Method(typeof(Product), "Unload")
             };
 
-            var loadProductMethod = vehicleType.GetMethod("LoadProduct");
-            var unloadMethod = vehicleType.GetMethod("Unload");
+            foreach (var expectedMethod in expectedMethods)
+            {
+                var currentMethod = vehicleType.GetMethod(expectedMethod.Name);
 
-            Assert.That(loadProductMethod, Is.Not.Null, "LoadProduct method doesn't exists");
-            Assert.That(unloadMethod, Is.Not.Null, "Unload method doesn't exists");
+                Assert.That(currentMethod, Is.Not.Null, $"{expectedMethod.Name} method doesn't exists");
 
-            var loadProductReturnType = loadProductMethod.ReturnType == typeof(void);
-            var unloadReturnType = unloadMethod.ReturnType == typeof(Product);
+                var currentMethodReturnType = currentMethod.ReturnType == expectedMethod.ReturnType;
+                Assert.That(currentMethodReturnType, $"{expectedMethod.Name} invalid return type");
 
-            Assert.That(loadProductReturnType, $"LoadProduct invalid return type");
-            Assert.That(unloadReturnType, $"Unload invalid return type");
-            //foreach (var actualMethod in actualMethods)
-            //{
-            //    var actualReturnType = actualMethod.ReturnType;
-            //    var actualName = actualMethod.Name;
-            //    var actualParams = actualMethod.GetParameters();
+                var expectedMethodParams = expectedMethod.InputParameters;
+                var actualParams = currentMethod.GetParameters();
 
-            //    var expectedMethod = expectedMethods.FirstOrDefault(x => x.Name == actualName);
+                for (int i = 0; i < expectedMethodParams.Length; i++)
+                {
+                    var actualParam = actualParams[i].ParameterType;
+                    var expectedParam = expectedMethodParams[i];
 
-            //    Assert.That(expectedMethod, Is.Not.Null, $"{expectedMethod.Name} doesn't exists");
+                    Assert.AreEqual(expectedParam, actualParam);
+                }
+            }
 
-            //    var isValidReturnType = expectedMethod.ReturnType == actualReturnType;
-
-            //    Assert.That(isValidReturnType, $"{actualMethod.Name} Invalid return type");
-
-            //    foreach (var actualParam in actualParams)
-            //    {
-            //        var isValidParams = expectedMethod.InputParameters.Any(x => x.Name == actualParam.Name);
-
-            //        Assert.That(isValidParams, $"{actualMethod.Name} Missing parameter");
-            //    }
-            //}
         }
 
 
