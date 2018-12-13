@@ -16,7 +16,5 @@
             this.CreateMapping<IWriter, ConsoleWriter>();
             this.CreateMapping<IWriter, FileWriter>();
         }
-
-        
     }
 }

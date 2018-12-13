@@ -6,8 +6,8 @@ namespace SurviceProvider
     {
         void AddService<TImplementation, TClass>();
 
-        void CreateInstance<TImplementation>();
+        object CreateInstance(Type type);
 
-
+        TClass CreateInstance<TClass>();
     }
 }

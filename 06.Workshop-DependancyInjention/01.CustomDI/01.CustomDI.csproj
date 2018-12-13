@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\01.SoftUniDI\01.SoftUniDI.csproj" />
+    <ProjectReference Include="..\SurviceProvider\SurviceProvider.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,16 +8,31 @@
 
     public class Engine
     {
-        [Inject]
-        private IReader reader;
+        private readonly IWriter fileWriter;
+        private readonly IReader consoleReader;
 
-        [Inject]
-        [Named("ConsoleWriter")]
-        private IWriter consoleWriter;
+        public Engine(IWriter fileWriter, IReader consoleReader)
+        {
+            this.fileWriter = fileWriter;
+            this.consoleReader = consoleReader;
+        }
 
-        [Inject]
-        [Named("FileWriter")]
-        private IWriter fileWriter;
+        public void Run()
+        {
+            string content = consoleReader.Read();
+            this.fileWriter.Write(content);
+        }
+
+        //[Inject]
+        //private IReader reader;
+
+        //[Inject]
+        //[Named("ConsoleWriter")]
+        //private IWriter consoleWriter;
+
+        //[Inject]
+        //[Named("FileWriter")]
+        //private IWriter fileWriter;
 
         //[Inject]
         //public Engine(IReader reader, IWriter consoleWriter, IWriter fileWriter)
@@ -27,11 +42,13 @@
         //    this.fileWriter = fileWriter;
         //}
 
-        public void Run()
-        {
-            var readInput = this.reader.Read();
-            this.consoleWriter.Write(readInput);
-            this.fileWriter.Write(readInput);
-        }
+        //public void Run()
+        //{
+        //    var readInput = this.reader.Read();
+        //    this.consoleWriter.Write(readInput);
+        //    this.fileWriter.Write(readInput);
+        //}
+
+
     }
 }
