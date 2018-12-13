@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageMaster", "StorageMaster\StorageMaster.csproj", "{5873144B-80C6-4064-A8B7-70088E6F26DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageMaster.Tests.Structure", "StorageMaster.Tests.Structure\StorageMaster.Tests.Structure.csproj", "{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5873144B-80C6-4064-A8B7-70088E6F26DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5873144B-80C6-4064-A8B7-70088E6F26DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5873144B-80C6-4064-A8B7-70088E6F26DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2A4748-AD31-43BD-B071-131E4E6CDEA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
