@@ -88,6 +88,10 @@
             Assert.AreEqual(expectedResult, actualResult);
         }
 
+        //TODO: test for SelectVehicle
+        //TODO: test for LoadVehicle
+        //TODO: test for UnloadVehicle
+
 
         private Type GetType(string type)
         {
