@@ -6,6 +6,6 @@
 
 	public interface ISetFactory
 	{
-		ISet CreateSet(string name, string type);
+		ISet CreateSet(string name, string typeName);
 	}
 }

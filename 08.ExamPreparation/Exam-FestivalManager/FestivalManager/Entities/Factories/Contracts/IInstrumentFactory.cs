@@ -4,6 +4,6 @@
 
 	public interface IInstrumentFactory
 	{
-		IInstrument CreateInstrument(string type);
+		IInstrument CreateInstrument(string typeName);
 	}
 }
