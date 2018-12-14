@@ -1,63 +1,48 @@
 ﻿namespace FestivalManager.Entities
 {
 	using System.Collections.Generic;
-	using Contracts;
+    using System.Linq;
+    using Contracts;
 
-	public class Stage : IStage
-	{
-		public readonly List<ISet> sets;
-		public readonly List<ISong> songs;
-		public readonly List<IPerformer> performers;
+    public class Stage : IStage
+    {
+        private readonly List<ISet> sets;
+        private readonly List<ISong> songs;
+        private readonly List<IPerformer> performers;
 
-        IReadOnlyCollection<ISet> IStage.Sets => throw new System.NotImplementedException();
-
-        IReadOnlyCollection<ISong> IStage.Songs => throw new System.NotImplementedException();
-
-        IReadOnlyCollection<IPerformer> IStage.Performers => throw new System.NotImplementedException();
-
-        public void AddPerformer(IPerformer performer)
+        public Stage()
         {
-            throw new System.NotImplementedException();
+            this.sets = new List<ISet>();
+            this.songs = new List<ISong>();
+            this.performers = new List<IPerformer>();
         }
 
-        public void AddSet(ISet performer)
-        {
-            throw new System.NotImplementedException();
-        }
+        //properties...
+        public IReadOnlyCollection<ISet> Sets => this.sets.AsReadOnly();
 
-        public void AddSong(ISong song)
-        {
-            throw new System.NotImplementedException();
-        }
+        public IReadOnlyCollection<ISong> Songs => this.songs.AsReadOnly();
 
-        public IPerformer GetPerformer(string name)
-        {
-            throw new System.NotImplementedException();
-        }
+        public IReadOnlyCollection<IPerformer> Performers => this.performers.AsReadOnly();
 
-        public ISet GetSet(string name)
-        {
-            throw new System.NotImplementedException();
-        }
+        //add...
+        public void AddPerformer(IPerformer performer) => this.performers.Add(performer);
 
-        public ISong GetSong(string name)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void AddSet(ISet set) => this.sets.Add(set);
 
-        public bool HasPerformer(string name)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void AddSong(ISong song) => this.songs.Add(song);
 
-        public bool HasSet(string name)
-        {
-            throw new System.NotImplementedException();
-        }
+        //get...
+        public IPerformer GetPerformer(string name) => this.Performers.FirstOrDefault(p => p.Name == name);
 
-        public bool HasSong(string name)
-        {
-            throw new System.NotImplementedException();
-        }
+        public ISet GetSet(string name) => this.Sets.FirstOrDefault(s => s.Name == name);
+
+        public ISong GetSong(string name) => this.Songs.FirstOrDefault(s => s.Name == name);
+
+        //has...
+        public bool HasPerformer(string name) => this.Performers.Any(p => p.Name == name);
+
+        public bool HasSet(string name) => this.Sets.Any(s => s.Name == name);
+
+        public bool HasSong(string name) => this.Songs.Any(s => s.Name == name);
     }
 }

@@ -11,9 +11,9 @@
 			this.Duration = duration;
 		}
 
-		public string Name { get; }
+		public string Name { get; private set; }
 
-	    public TimeSpan Duration { get; }
+	    public TimeSpan Duration { get; private set; }
 
 	    public override string ToString()
 	    {

@@ -13,20 +13,21 @@
 			this.Name = name;
 			this.Age = age;
 
-			//this.instruments = new List<Instrument>();
+			this.instruments = new List<IInstrument>();
 		}
 
-		public string Name { get; }
+		public string Name { get; private set; }
 
-		public int Age { get; }
+		public int Age { get; private set; }
 
-		public IReadOnlyCollection<IInstrument> Instruments => this.instruments;
+		public IReadOnlyCollection<IInstrument> Instruments => this.instruments.AsReadOnly();
 
 		public void AddInstrument(IInstrument instrument)
 		{
 			this.instruments.Add(instrument);
 		}
 
+        //NB: Might be a bug
 		public override string ToString()
 		{
 			return this.Name;

@@ -20,7 +20,7 @@
 
 		void AddSong(ISong song);
 
-		void AddSet(ISet performer);
+		void AddSet(ISet set);
 
 		bool HasPerformer(string name);
 
