@@ -64,7 +64,7 @@
 		public string SignUpPerformer(string[] args)
 		{
 			var name = args[0];
-			var age = int.Prase(args[1]);
+			var age = int.Parse(args[1]);
 
 			var instrumenti = args.Skip(2).ToArray();
 
@@ -159,5 +159,15 @@
 
 			return $"Repaired {instrumentsToRepair.Length} instruments";
 		}
-	}
+
+        public string ProduceReport()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string AddSongToSet(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

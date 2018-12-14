@@ -15,13 +15,15 @@
 	{
 		public static void Main(string[] args)
 		{
-			Stage stage = new Stage();
-			IFestivalController festivalController = new FestivalController(stage);
-			ISetController setController = new SetController(stage);
+            IReader reader = new ConsoleReader();
+            IWriter writer = new ConsoleWriter();
+            IStage stage = new Stage();
+            IFestivalController festivalControler = new FestivalController(stage);
+            ISetController setConstroler = new SetController(stage);
 
-			var engine = new Енджин(festivalController, setController);
+			IEngine engine = new Engine(reader, writer, festivalControler, setConstroler);
 
-			engine.Запали();
+			engine.Run();
 		}
 	}
 }
