@@ -7,12 +7,12 @@
 
 	using Contracts;
 
-	public abstract class ConcertSet
+	public abstract class Set
 	{
 		private readonly List<IPerformer> performers;
 		private readonly List<ISong> songs;
 
-		protected ConcertSet(string name, TimeSpan maxDuration)
+		protected Set(string name, TimeSpan maxDuration)
 		{
 			this.Name = name;
 			this.MaxDuration = maxDuration;
@@ -21,21 +21,15 @@
 			this.songs = new List<ISong>();
 		}
 
-		public string Name { get; }
+		public string Name { get; private set; }
 
-		public TimeSpan MaxDuration { get; }
+		public TimeSpan MaxDuration { get; private set; }
 
 		public TimeSpan ActualDuration => new TimeSpan(this.Songs.Sum(s => s.Duration.Ticks));
 
-		public IReadOnlyCollection<IPerformer> Performers
-		{
-			get { return performers; }
-		}
+        public IReadOnlyCollection<IPerformer> Performers => this.performers.AsReadOnly();
 
-		public IReadOnlyCollection<ISong> Songs
-		{
-			get { return songs; }
-		}
+        public IReadOnlyCollection<ISong> Songs => this.songs.AsReadOnly();
 
 		public void AddPerformer(IPerformer performer) => this.performers.Add(performer);
 
