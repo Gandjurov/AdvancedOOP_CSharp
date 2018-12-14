@@ -13,7 +13,7 @@
 			this.Name = name;
 			this.Age = age;
 
-			this.instruments = new List<Instrument>();
+			//this.instruments = new List<Instrument>();
 		}
 
 		public string Name { get; }

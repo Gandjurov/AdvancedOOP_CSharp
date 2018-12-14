@@ -26,11 +26,11 @@
 
 			var totalFestivalLength = new TimeSpan(this.stage.Sets.Sum(s => s.ActualDuration.Ticks));
 
-			result += ($"Festival length: {FormatTime(totalFestivalLength)}") + "\n";
+			//result += ($"Festival length: {FormatTime(totalFestivalLength)}") + "\n";
 
 			foreach (var set in this.stage.Sets)
 			{
-				result += ($"--{set.Name} ({FormatTime(set.ActualDuration)}):") + "\n";
+				//result += ($"--{set.Name} ({FormatTime(set.ActualDuration)}):") + "\n";
 
 				var performersOrderedDescendingByAge = set.Performers.OrderByDescending(p => p.Age);
 				foreach (var performer in performersOrderedDescendingByAge)
@@ -61,34 +61,35 @@
 			throw new NotImplementedException(); // оф...
 		}
 
-		public string SignUpPerformer(string[] args)
-		{
-			var name = args[0];
-			var age = int.Parse(args[1]);
+		//public string SignUpPerformer(string[] args)
+		//{
+		//	var name = args[0];
+		//	var age = int.Parse(args[1]);
 
-			var instrumenti = args.Skip(2).ToArray();
+		//	var instrumenti = args.Skip(2).ToArray();
 
-			var instrumenti2 = instrumenti
-				.Select(i => this.instrumentFactory.CreateInstrument(i))
-				.ToArray();
+		//	var instrumenti2 = instrumenti
+		//		.Select(i => this.InstrumentFactory.CreateInstrument(i))
+		//		.ToArray();
 
-			var performer = this.performerFactory.CreatePerformer(name, age);
+  //          var performer = this.performerFactory.CreatePerformer(name, age);
 
-			foreach (var instrument in instrumenti2)
-			{
-				performer.AddInstrument(instrument);
-			}
+  //          foreach (var instrument in instrumenti2)
+  //          {
+  //              performer.AddInstrument(instrument);
+  //          }
 
-			this.stage.AddPerformer(performer);
+  //          this.stage.AddPerformer(performer);
 
-			return $"Registered performer {performer.Name}";
-		}
+  //          return $"Registered performer {performer.Name}";
+  //      }
 
 		public string RegisterSong(string[] args)
 		{
-			// TODO: scheduled for next month
+            // TODO: scheduled for next month
 
-			return $"Registered song {song}";
+            return null;
+                //$"Registered song {song}";
 		}
 
 		public string SongRegistration(string[] args)
@@ -166,6 +167,11 @@
         }
 
         public string AddSongToSet(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string SignUpPerformer(string[] args)
         {
             throw new NotImplementedException();
         }
