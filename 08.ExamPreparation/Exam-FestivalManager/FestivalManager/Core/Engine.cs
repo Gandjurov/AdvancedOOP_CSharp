@@ -59,7 +59,7 @@ namespace FestivalManager.Core
 			this.writer.WriteLine(end);
 		}
 
-		private  string ProcessCommand(string input)
+		public string ProcessCommand(string input)
 		{
 			string[] tokens = input.Split();
 

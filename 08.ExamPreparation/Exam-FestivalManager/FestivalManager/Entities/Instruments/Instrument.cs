@@ -1,13 +1,13 @@
-﻿using System;
-
-namespace FestivalManager.Entities.Instruments
+﻿namespace FestivalManager.Entities.Instruments
 {
-	using Contracts;
+    using System;
+    using Contracts;
 
 	public abstract class Instrument : IInstrument
-	{
-		private double wear;
-		private const int MaxWear = 100;
+    {
+        private const int MaxWear = 100;
+
+        private double wear;
 
 		protected Instrument()
 		{
@@ -15,18 +15,12 @@ namespace FestivalManager.Entities.Instruments
 		}
 
 		public double Wear
-		{
-			get
-			{
-				return this.wear;
-			}
-			private set
-			{
-				this.wear = Math.Min(Math.Max(value, 0), 100);
-			}
-		}
+        {
+            get => this.wear;
+            private set => this.wear = Math.Min(Math.Max(value, 0), MaxWear);
+        }
 
-		protected abstract int RepairAmount { get; }
+        protected abstract int RepairAmount { get; }
 
 		public void Repair() => this.Wear += this.RepairAmount;
 
