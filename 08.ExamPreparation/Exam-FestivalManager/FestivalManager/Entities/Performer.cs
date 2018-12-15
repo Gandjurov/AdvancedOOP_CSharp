@@ -26,11 +26,5 @@
 		{
 			this.instruments.Add(instrument);
 		}
-
-        //NB: Might be a bug
-		public override string ToString()
-		{
-			return this.Name;
-		}
 	}
 }
