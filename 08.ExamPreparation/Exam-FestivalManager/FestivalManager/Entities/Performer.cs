@@ -4,7 +4,7 @@
 	using Contracts;
 	using Instruments;
 
-	public class Performer
+	public class Performer : IPerformer
 	{
 		private readonly List<IInstrument> instruments;
 

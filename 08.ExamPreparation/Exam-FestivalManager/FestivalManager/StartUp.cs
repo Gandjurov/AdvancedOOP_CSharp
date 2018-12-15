@@ -17,7 +17,7 @@
             IReader reader = new ConsoleReader();
             IWriter writer = new ConsoleWriter();
             IStage stage = new Stage();
-            IFestivalController festivalControler = new FestivalController(stage, new SetFactory());
+            IFestivalController festivalControler = new FestivalController(stage, new SetFactory(), new InstrumentFactory());
             ISetController setConstroler = new SetController(stage);
 
 			IEngine engine = new Engine(reader, writer, festivalControler, setConstroler);
