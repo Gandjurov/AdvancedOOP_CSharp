@@ -50,6 +50,31 @@ namespace FestivalManager.Tests
 
             Assert.That(actualResult, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void PerformSetsShouldDecreaseInstrumentWear()
+        {
+            IStage stage = new Stage();
+            ISetController setController = new SetController(stage);
+
+            ISet set = new Short("Set1");
+            IPerformer performer = new Performer("Pesho", 12);
+            IInstrument instrument = new Guitar();
+            performer.AddInstrument(instrument);
+            set.AddPerformer(performer);
+
+            ISong song = new Song("Song", new TimeSpan(0, 2, 30));
+            set.AddSong(song);
+
+            stage.AddSet(set);
+
+            double instrumentWearBeforePerforming = instrument.Wear;
+            setController.PerformSets();
+
+            double instrumentWearAfterPerforming = instrument.Wear;
+
+            Assert.That(instrumentWearAfterPerforming, Is.Not.EqualTo(instrumentWearBeforePerforming));
+        }
     }
 
 }
