@@ -2,17 +2,14 @@
 {
 	using System;
 	using System.Linq;
-	using Contracts;
+    using System.Text;
+    using Contracts;
 	using Entities.Contracts;
     using FestivalManager.Entities;
     using FestivalManager.Entities.Factories.Contracts;
 
     public class FestivalController : IFestivalController
 	{
-		private const string TimeFormat = "mm\\:ss";
-		private const string TimeFormatLong = "{0:2D}:{1:2D}";
-		private const string TimeFormatThreeDimensional = "{0:3D}:{1:3D}";
-
 		private readonly IStage stage;
         private readonly ISetFactory setFactory;
         private readonly IInstrumentFactory instrumentFactory;
@@ -156,15 +153,15 @@
 
         public string ProduceReport()
         {
-            var result = string.Empty;
+            StringBuilder sb = new StringBuilder();
 
             var totalFestivalLength = new TimeSpan(this.stage.Sets.Sum(s => s.ActualDuration.Ticks));
 
-            //result += ($"Festival length: {FormatTime(totalFestivalLength)}") + "\n";
+            sb.AppendLine($"Festival length: {FormatTimeSpanToString(totalFestivalLength)}");
 
             foreach (var set in this.stage.Sets)
             {
-                //result += ($"--{set.Name} ({FormatTime(set.ActualDuration)}):") + "\n";
+                sb.AppendLine($"--{set.Name} ({FormatTimeSpanToString(set.ActualDuration)}):");
 
                 var performersOrderedDescendingByAge = set.Performers.OrderByDescending(p => p.Age);
                 foreach (var performer in performersOrderedDescendingByAge)
@@ -172,25 +169,33 @@
                     var instruments = string.Join(", ", performer.Instruments
                         .OrderByDescending(i => i.Wear));
 
-                    result += ($"---{performer.Name} ({instruments})") + "\n";
+                    sb.AppendLine($"---{performer.Name} ({instruments})");
                 }
 
                 if (!set.Songs.Any())
-                    result += ("--No songs played") + "\n";
+                    sb.AppendLine("--No songs played");
                 else
                 {
-                    result += ("--Songs played:") + "\n";
+                    sb.AppendLine("--Songs played:");
                     foreach (var song in set.Songs)
                     {
-                        result += ($"----{song.Name} ({song.Duration.ToString(TimeFormat)})") + "\n";
+                        sb.AppendLine($"----{song.Name} ({FormatTimeSpanToString(song.Duration)})");
                     }
                 }
             }
 
-            return result.ToString();
+            string result = sb.ToString().TrimEnd();
+            return result;
         }
 
+        private string FormatTimeSpanToString(TimeSpan timeSpan)
+        {
+            int minutes = timeSpan.Hours * 60 + timeSpan.Minutes;
+            int seconds = timeSpan.Seconds;
 
+            string result = $"{minutes:d2}:{seconds:d2}";
+            return result;
+        }
         
     }
 }
