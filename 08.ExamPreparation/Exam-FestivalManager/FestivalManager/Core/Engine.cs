@@ -40,18 +40,26 @@ namespace FestivalManager.Core
                 if (input == "END")
                 {
                     this.isRunning = false;
+                    continue;
                 }
 
+                string commandResult;
 				try
 				{
-					var result = this.ProcessCommand(input);
-					this.writer.WriteLine(result);
+                    commandResult = this.ProcessCommand(input);
+
 				}
-				catch (Exception ex)
+                catch (TargetInvocationException ex)
+                {
+                    commandResult = "ERROR: " + ex.InnerException.Message;
+                }
+                catch (Exception ex)
 				{
-					this.writer.WriteLine("ERROR: " + ex.Message);
+                    commandResult = "ERROR: " + ex.Message;
 				}
-			}
+
+                this.writer.WriteLine(commandResult);
+            }
 
 			var end = this.festivalCоntroller.ProduceReport();
 
