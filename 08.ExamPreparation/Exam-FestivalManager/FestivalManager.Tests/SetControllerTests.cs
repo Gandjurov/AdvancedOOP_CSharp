@@ -17,10 +17,10 @@ namespace FestivalManager.Tests
             IStage stage = new Stage();
             ISetController setController = new SetController(stage);
 
-            ISet set = new Short("set1");
+            ISet set = new Short("Set1");
             stage.AddSet(set);
 
-            string expectedResult = "1. set1:\r\n-- Did not perform";
+            string expectedResult = "1. Set1:\r\n-- Did not perform";
             string actualResult = setController.PerformSets();
 
             Assert.That(actualResult, Is.EqualTo(expectedResult));
