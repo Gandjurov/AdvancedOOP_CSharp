@@ -10,7 +10,11 @@
 	{
 		private readonly IStage stage;
 
-		public SetController(IStage stage)
+        public SetController()
+        {
+        }
+
+        public SetController(IStage stage)
 		{
 			this.stage = stage;
 		}
