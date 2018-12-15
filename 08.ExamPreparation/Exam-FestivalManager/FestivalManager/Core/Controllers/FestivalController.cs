@@ -1,26 +1,43 @@
 ﻿namespace FestivalManager.Core.Controllers
 {
 	using System;
-	using System.Globalization;
 	using System.Linq;
-	using System.Text;
 	using Contracts;
 	using Entities.Contracts;
+    using FestivalManager.Entities.Factories.Contracts;
 
-	public class FestivalController : IFestivalController
+    public class FestivalController : IFestivalController
 	{
 		private const string TimeFormat = "mm\\:ss";
 		private const string TimeFormatLong = "{0:2D}:{1:2D}";
 		private const string TimeFormatThreeDimensional = "{0:3D}:{1:3D}";
 
 		private readonly IStage stage;
+        private readonly ISetFactory setFactory;
 
-		public FestivalController(IStage stage)
+		public FestivalController(IStage stage, ISetFactory setFactory)
 		{
 			this.stage = stage;
-		}
+            this.setFactory = setFactory;
+        }
 
-		public string Report()
+        public string RegisterSet(string[] args)
+        {
+            string name = args[0];
+            string setTypeName = args[1];
+
+            ISet set = this.setFactory.CreateSet(name, setTypeName);
+
+            this.stage.AddSet(set);
+
+            string result = $"Registered {setTypeName} set";
+            return result;
+        }
+
+
+
+
+        public string Report()
 		{
 			var result = string.Empty;
 
@@ -54,11 +71,6 @@
 			}
 
 			return result.ToString();
-		}
-
-		public string RegisterSet(string[] args)
-		{
-			throw new NotImplementedException(); // оф...
 		}
 
 		//public string SignUpPerformer(string[] args)

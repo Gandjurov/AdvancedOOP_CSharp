@@ -7,7 +7,7 @@
 
 	using Contracts;
 
-	public abstract class Set
+	public abstract class Set : ISet
 	{
 		private readonly List<IPerformer> performers;
 		private readonly List<ISong> songs;
