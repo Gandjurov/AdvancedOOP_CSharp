@@ -5,7 +5,7 @@
 
 	public class Song : ISong
     {
-		public Song(string name, TimeSpan duration)
+        public Song(string name, TimeSpan duration)
 		{
 			this.Name = name;
 			this.Duration = duration;
