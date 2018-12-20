@@ -2,8 +2,9 @@
 {
 	using Contracts;
 	using Airplanes.Contracts;
+    using Entities.Airplanes;
 
-	public class AirplaneFactory : IAirplaneFactory
+    public class AirplaneFactory : IAirplaneFactory
 	{
 		public IAirplane CreateAirplane(string type)
 		{
@@ -14,7 +15,7 @@
 				case "MediumAirplane":
 					return new MediumAirplane();
 				default:
-					return new Airplane();
+					return null; //TODO what to return
 			}
 		}
 	}

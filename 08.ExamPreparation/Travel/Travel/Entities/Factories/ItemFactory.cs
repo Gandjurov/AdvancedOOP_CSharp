@@ -10,22 +10,20 @@
 		{
 			switch (type)
 			{
-				case "Item":
-					return new Item();
 				case "CellPhone":
-					return new Colombian();
+					return new CellPhone();
 				case "Colombian":
 					return new Colombian();
 				case "Jewelery":
 					return new Jewelery();
 				case "Laptop":
 					return new Laptop();
-				case "toothbrush":
+				case "Toothbrush":
 					return new Toothbrush();
 				case "TravelKit":
 					return new TravelKit();
 				default:
-					return new Soap();
+                    return null; //TODO what to do
 			}
 		}
 	}
