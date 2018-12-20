@@ -1,8 +1,9 @@
 ﻿namespace Travel.Core.IO
 {
 	using Contracts;
+    using System;
 
-	public class ConsoleWriter : IWriter
+    public class ConsoleWriter : IWriter
 	{
 		public void WriteLine(string contents)
 		{

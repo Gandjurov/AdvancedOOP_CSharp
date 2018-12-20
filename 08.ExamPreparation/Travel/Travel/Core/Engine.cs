@@ -1,6 +1,7 @@
 ﻿namespace Travel.Core
 {
-	using System.Linq;
+    using System;
+    using System.Linq;
 	using Contracts;
 	using Controllers.Contracts;
 	using IO.Contracts;
@@ -22,7 +23,7 @@
 			this.flightController = flightController;
 		}
 
-		public void ВдигниСамолета()
+		public void Run()
 		{
 			while (true)
 			{
@@ -36,11 +37,11 @@
 				try
 				{
 					var result = this.ProcessCommand(input);
-					Console.WriteLine(result);
+					this.writer.WriteLine(result);
 				}
 				catch (System.InvalidOperationException ex)
 				{
-					Console.WriteLine("ERROR: " + ex.Message);
+                    this.writer.WriteLine("ERROR: " + ex.Message);
 				}
 			}
 		}
@@ -81,7 +82,7 @@
 				{
 					var username = args[0];
 					var tripId = args[1];
-					var bagCheckInIndices = args.Skip(2).Select(Int32.Parse);
+					var bagCheckInIndices = args.Skip(2).Select(int.Parse);
 
 					var output = this.airportController.CheckIn(username, tripId, bagCheckInIndices);
 					return output;
