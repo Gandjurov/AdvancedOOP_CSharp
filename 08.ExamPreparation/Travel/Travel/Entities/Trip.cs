@@ -1,14 +1,9 @@
 ﻿namespace Travel.Entities
 {
-	using Airplanes.Contracts;
-	using Contracts;
+    using Contracts;
+    using Entities.Airplanes.Contracts;
 
-	/* 3/3
-	 * I'll take a quiet life
-	 * A handshake of carbon monoxide
-	 * With no alarms and no surprises
-	 */
-	public class Trip : ITrip
+    public class Trip : ITrip
 	{
 		private static int id = 1;
 
