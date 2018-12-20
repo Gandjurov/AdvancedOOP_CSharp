@@ -9,8 +9,8 @@
 
     public abstract class Airplane : IAirplane
     {
-        public List<IBag> baggageCompartment;
-        public List<IPassenger> passengers;
+        private List<IBag> baggageCompartment;
+        private List<IPassenger> passengers;
 
         protected Airplane(int seats, int baggageCompartments)
         {
